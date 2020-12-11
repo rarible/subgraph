@@ -1,0 +1,29 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ExchangeV1
+    network: mainnet
+    source:
+      address: "0xcd4ec7b66fbc029c116ba9ffb3e59351c20b5b06"
+      abi: ExchangeV1
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - Buy
+        - Cancel
+        - OwnershipTransferred
+      abis:
+        - name: ExchangeV1
+          file: ./abis/ExchangeV1.json
+      eventHandlers:
+        - event: Buy(indexed address,indexed uint256,uint256,address,address,uint256,uint256,address,uint256,uint256)
+          handler: handleBuy
+        - event: Cancel(indexed address,indexed uint256,address,address,uint256,uint256)
+          handler: handleCancel
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/mapping.ts
