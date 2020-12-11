@@ -1,4 +1,4 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,12 +8,13 @@ dataSources:
     source:
       address: "0xcd4ec7b66fbc029c116ba9ffb3e59351c20b5b06"
       abi: ExchangeV1
+      startBlock: 11274515
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Buy
+        - Deal
         - Cancel
         - OwnershipTransferred
       abis:

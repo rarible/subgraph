@@ -5,17 +5,17 @@ import {
   Cancel,
   OwnershipTransferred
 } from "../generated/ExchangeV1/ExchangeV1"
-import { ExampleEntity } from "../generated/schema"
+import { Deal } from "../generated/schema"
 
 export function handleBuy(event: Buy): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
-  let entity = ExampleEntity.load(event.transaction.from.toHex())
+  let entity = Deal.load(event.transaction.from.toHex())
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
-    entity = new ExampleEntity(event.transaction.from.toHex())
+    entity = new Deal(event.transaction.from.toHex())
 
     // Entity fields can be set using simple assignments
     entity.count = BigInt.fromI32(0)
@@ -23,10 +23,22 @@ export function handleBuy(event: Buy): void {
 
   // BigInt and BigDecimal math are supported
   entity.count = entity.count + BigInt.fromI32(1)
-
-  // Entity fields can be set based on event parameters
+  
   entity.sellToken = event.params.sellToken
   entity.sellTokenId = event.params.sellTokenId
+  entity.seller = event.params.owner
+  
+  entity.buyToken = event.params.buyToken
+  entity.buyTokenId = event.params.buyTokenId
+  entity.buyValue = event.params.buyValue
+  
+  if (event.params.buyTokenId == BigInt.fromI32(0)){
+      entity.buyer = event.params.buyer
+      entity.amount = event.params.buyValue * event.params.amount / event.params.sellValue
+  } else (event.params.sellTokenId == BigInt.fromI32(0)){
+      entity.buyer = event.params.owner
+      entity.amount = event.params.amount
+  }
 
   // Entities can be written to the store with `.save()`
   entity.save()

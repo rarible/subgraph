@@ -1,6 +1,13 @@
-type ExampleEntity @entity {
+type Deal @entity {
   id: ID!
-  count: BigInt!
-  sellToken: Bytes! # address
-  sellTokenId: BigInt! # uint256
+  count: BigInt
+  sellToken: Bytes
+  sellTokenId: BigInt
+  sellValue: BigInt
+  seller: Bytes
+  buyToken: Bytes
+  buyTokenId: BigInt
+  buyValue: BigInt
+  buyer: Bytes
+  amount: BigInt
 }
