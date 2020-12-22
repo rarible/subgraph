@@ -1,14 +1,14 @@
-# Rarible Subgraph
+# Protocol subgraph
 
 The subgraph provides information about buys on https://rarible.com, including fee amounts.
 
-In the current version, only `ExchangeV1` contract's `Buy` events are handled. Other contracts will be added soon.
+In the current version, only `ExchangeV1` contract events are handled. Other contracts will be added soon.
 
 The graphql schema is still under heavy development and will likely have major changes and improvements.
 
 ### Installation/Development
 
-For development instructions follow the official documentation - https://thegraph.com/docs/define-a-subgraph#install-the-graph-cli.
+Please follow the official documentation - https://thegraph.com/docs/define-a-subgraph#install-the-graph-cli.
 
 ## Entity
 

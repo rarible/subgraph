@@ -4,10 +4,10 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ aesariyev/Rarible",
-    "create-local": "graph create --node http://localhost:8020/ aesariyev/Rarible",
-    "remove-local": "graph remove --node http://localhost:8020/ aesariyev/Rarible",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 aesariyev/Rarible"
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ rarible/protocol",
+    "create-local": "graph create --node http://localhost:8020/ rarible/protocol",
+    "remove-local": "graph remove --node http://localhost:8020/ rarible/protocol",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 rarible/protocol"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.19.0",

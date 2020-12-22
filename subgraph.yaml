@@ -1,4 +1,6 @@
 specVersion: 0.0.2
+description: Protocol is a tracker of buy events on rarible.com
+repository: https://github.com/rariblecom/subgraph
 schema:
   file: ./schema.graphql
 dataSources:
