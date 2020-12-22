@@ -1,13 +1,13 @@
 type Deal @entity {
   id: ID!
-  count: BigInt
-  sellToken: Bytes
-  sellTokenId: BigInt
-  sellValue: BigInt
-  seller: Bytes
-  buyToken: Bytes
-  buyTokenId: BigInt
-  buyValue: BigInt
-  buyer: Bytes
-  amount: BigInt
+  seller: Bytes!
+  buyer: Bytes!
+  sellToken: Bytes!
+  buyToken: Bytes!
+  amount: BigInt!
+  price: BigInt!
+  fee: BigDecimal!
+  txHash: Bytes!
+  blockNumber: BigInt!
+  blockTime: BigInt!
 }

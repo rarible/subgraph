@@ -42,173 +42,93 @@ export class Deal extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get count(): BigInt | null {
-    let value = this.get("count");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set count(value: BigInt | null) {
-    if (value === null) {
-      this.unset("count");
-    } else {
-      this.set("count", Value.fromBigInt(value as BigInt));
-    }
-  }
-
-  get sellToken(): Bytes | null {
-    let value = this.get("sellToken");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set sellToken(value: Bytes | null) {
-    if (value === null) {
-      this.unset("sellToken");
-    } else {
-      this.set("sellToken", Value.fromBytes(value as Bytes));
-    }
-  }
-
-  get sellTokenId(): BigInt | null {
-    let value = this.get("sellTokenId");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set sellTokenId(value: BigInt | null) {
-    if (value === null) {
-      this.unset("sellTokenId");
-    } else {
-      this.set("sellTokenId", Value.fromBigInt(value as BigInt));
-    }
-  }
-
-  get sellValue(): BigInt | null {
-    let value = this.get("sellValue");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set sellValue(value: BigInt | null) {
-    if (value === null) {
-      this.unset("sellValue");
-    } else {
-      this.set("sellValue", Value.fromBigInt(value as BigInt));
-    }
-  }
-
-  get seller(): Bytes | null {
+  get seller(): Bytes {
     let value = this.get("seller");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBytes();
-    }
+    return value.toBytes();
   }
 
-  set seller(value: Bytes | null) {
-    if (value === null) {
-      this.unset("seller");
-    } else {
-      this.set("seller", Value.fromBytes(value as Bytes));
-    }
+  set seller(value: Bytes) {
+    this.set("seller", Value.fromBytes(value));
   }
 
-  get buyToken(): Bytes | null {
-    let value = this.get("buyToken");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set buyToken(value: Bytes | null) {
-    if (value === null) {
-      this.unset("buyToken");
-    } else {
-      this.set("buyToken", Value.fromBytes(value as Bytes));
-    }
-  }
-
-  get buyTokenId(): BigInt | null {
-    let value = this.get("buyTokenId");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set buyTokenId(value: BigInt | null) {
-    if (value === null) {
-      this.unset("buyTokenId");
-    } else {
-      this.set("buyTokenId", Value.fromBigInt(value as BigInt));
-    }
-  }
-
-  get buyValue(): BigInt | null {
-    let value = this.get("buyValue");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set buyValue(value: BigInt | null) {
-    if (value === null) {
-      this.unset("buyValue");
-    } else {
-      this.set("buyValue", Value.fromBigInt(value as BigInt));
-    }
-  }
-
-  get buyer(): Bytes | null {
+  get buyer(): Bytes {
     let value = this.get("buyer");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBytes();
-    }
+    return value.toBytes();
   }
 
-  set buyer(value: Bytes | null) {
-    if (value === null) {
-      this.unset("buyer");
-    } else {
-      this.set("buyer", Value.fromBytes(value as Bytes));
-    }
+  set buyer(value: Bytes) {
+    this.set("buyer", Value.fromBytes(value));
   }
 
-  get amount(): BigInt | null {
+  get sellToken(): Bytes {
+    let value = this.get("sellToken");
+    return value.toBytes();
+  }
+
+  set sellToken(value: Bytes) {
+    this.set("sellToken", Value.fromBytes(value));
+  }
+
+  get buyToken(): Bytes {
+    let value = this.get("buyToken");
+    return value.toBytes();
+  }
+
+  set buyToken(value: Bytes) {
+    this.set("buyToken", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
     let value = this.get("amount");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
+    return value.toBigInt();
   }
 
-  set amount(value: BigInt | null) {
-    if (value === null) {
-      this.unset("amount");
-    } else {
-      this.set("amount", Value.fromBigInt(value as BigInt));
-    }
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get price(): BigInt {
+    let value = this.get("price");
+    return value.toBigInt();
+  }
+
+  set price(value: BigInt) {
+    this.set("price", Value.fromBigInt(value));
+  }
+
+  get fee(): BigDecimal {
+    let value = this.get("fee");
+    return value.toBigDecimal();
+  }
+
+  set fee(value: BigDecimal) {
+    this.set("fee", Value.fromBigDecimal(value));
+  }
+
+  get txHash(): Bytes {
+    let value = this.get("txHash");
+    return value.toBytes();
+  }
+
+  set txHash(value: Bytes) {
+    this.set("txHash", Value.fromBytes(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+
+  get blockTime(): BigInt {
+    let value = this.get("blockTime");
+    return value.toBigInt();
+  }
+
+  set blockTime(value: BigInt) {
+    this.set("blockTime", Value.fromBigInt(value));
   }
 }

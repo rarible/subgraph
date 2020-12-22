@@ -15,16 +15,10 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Deal
-        - Cancel
-        - OwnershipTransferred
       abis:
         - name: ExchangeV1
           file: ./abis/ExchangeV1.json
       eventHandlers:
         - event: Buy(indexed address,indexed uint256,uint256,address,address,uint256,uint256,address,uint256,uint256)
           handler: handleBuy
-        - event: Cancel(indexed address,indexed uint256,address,address,uint256,uint256)
-          handler: handleCancel
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
       file: ./src/mapping.ts
