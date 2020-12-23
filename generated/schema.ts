@@ -131,4 +131,13 @@ export class Deal extends Entity {
   set blockTime(value: BigInt) {
     this.set("blockTime", Value.fromBigInt(value));
   }
+
+  get contract(): string {
+    let value = this.get("contract");
+    return value.toString();
+  }
+
+  set contract(value: string) {
+    this.set("contract", Value.fromString(value));
+  }
 }

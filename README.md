@@ -19,8 +19,8 @@ Please follow the official documentation - https://thegraph.com/docs/define-a-su
 - **buyToken** - token to buy address
 - **amount** - amount of tokens to buy
 - **price** - price of a token to buy
+- **fee** - fee in a `buyToken` currency
 - **txHash** - transaction hash
-- **fee** - fee in a token to buy currency
 - **blockNumber** - block number of the event
 - **blockTime** - block time the event was processed
 
@@ -43,7 +43,7 @@ Please follow the official documentation - https://thegraph.com/docs/define-a-su
   }
 }
 ```
-The number of entities are specified with `first` flag.
+> The number of entities are specified with `first` flag.
 
 **Deal by transaction hash**
 ```GraphQL

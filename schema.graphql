@@ -10,4 +10,10 @@ type Deal @entity {
   txHash: Bytes!
   blockNumber: BigInt!
   blockTime: BigInt!
+  contract: ContractType!
+}
+
+enum ContractType {
+  TokenSale
+  ExchangeV1
 }
