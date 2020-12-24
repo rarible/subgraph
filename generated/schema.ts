@@ -42,6 +42,15 @@ export class Deal extends Entity {
     this.set("id", Value.fromString(value));
   }
 
+  get type(): string {
+    let value = this.get("type");
+    return value.toString();
+  }
+
+  set type(value: string) {
+    this.set("type", Value.fromString(value));
+  }
+
   get seller(): Bytes {
     let value = this.get("seller");
     return value.toBytes();
@@ -78,13 +87,22 @@ export class Deal extends Entity {
     this.set("buyToken", Value.fromBytes(value));
   }
 
-  get amount(): BigInt {
-    let value = this.get("amount");
+  get sellAmount(): BigInt {
+    let value = this.get("sellAmount");
     return value.toBigInt();
   }
 
-  set amount(value: BigInt) {
-    this.set("amount", Value.fromBigInt(value));
+  set sellAmount(value: BigInt) {
+    this.set("sellAmount", Value.fromBigInt(value));
+  }
+
+  get buyAmount(): BigInt {
+    let value = this.get("buyAmount");
+    return value.toBigInt();
+  }
+
+  set buyAmount(value: BigInt) {
+    this.set("buyAmount", Value.fromBigInt(value));
   }
 
   get price(): BigInt {

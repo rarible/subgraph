@@ -1,5 +1,5 @@
 specVersion: 0.0.2
-description: Protocol is a tracker of purchases on rarible.com
+description: Protocol is a tracker of purchases on a rarible.com
 repository: https://github.com/rariblecom/subgraph
 schema:
   file: ./schema.graphql
@@ -28,7 +28,7 @@ dataSources:
     name: TokenSale
     network: mainnet
     source:
-      address: "0xa5af48b105ddf2fa73cbaac61d420ea31b3c2a07"
+      address: "0xf2ee97405593bc7b6275682b0331169a48fedec7"
       abi: TokenSale
       startBlock: 8803300
     mapping:
@@ -44,3 +44,43 @@ dataSources:
         - event: Buy(indexed address,indexed uint256,address,address,uint256,uint256)
           handler: handleBuy
       file: ./src/mapping/TokenSale.ts
+  - kind: ethereum/contract
+    name: ERC1155SaleV1
+    network: mainnet
+    source:
+      address: "0x8c530a698b6e83d562db09079bc458d4dad4e6c5"
+      abi: ERC1155SaleV1
+      startBlock: 10147909
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Deal
+      abis:
+        - name: ERC1155SaleV1
+          file: ./abis/ERC1155SaleV1.json
+      eventHandlers:
+        - event: Buy(indexed address,indexed uint256,address,uint256,address,uint256)
+          handler: handleBuy
+      file: ./src/mapping/ERC1155SaleV1.ts
+  - kind: ethereum/contract
+    name: ERC721SaleV2
+    network: mainnet
+    source:
+      address: "0x131aebbfe55bca0c9eaad4ea24d386c5c082dd58"
+      abi: ERC721SaleV2
+      startBlock: 10786971
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Deal
+      abis:
+        - name: ERC721SaleV2
+          file: ./abis/ERC721SaleV2.json
+      eventHandlers:
+        - event: Buy(indexed address,indexed uint256,address,address,uint256,uint256)
+          handler: handleBuy
+      file: ./src/mapping/ERC721SaleV2.ts

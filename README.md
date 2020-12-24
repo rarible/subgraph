@@ -1,8 +1,15 @@
 # Protocol subgraph
 
-The subgraph provides information about buys on https://rarible.com, including fee amounts.
+The subgraph provides information on purchases at https://rarible.com, including commission amounts.
 
-In the current version, only `ExchangeV1` contract events are handled. Other contracts will be added soon.
+Contracts support status in the current version:
+
+- [x] TokenSale
+- [ ] ERC721SaleV1
+- [x] ERC721SaleV2
+- [x] ERC1155SaleV1
+- [ ] ERC1155SaleV2
+- [x] ExchangeV1
 
 The graphql schema is still under heavy development and will likely have major changes and improvements.
 
@@ -10,19 +17,30 @@ The graphql schema is still under heavy development and will likely have major c
 
 Please follow the official documentation - https://thegraph.com/docs/define-a-subgraph#install-the-graph-cli.
 
-## Entity
+## Entities
 
 **Deal** - represents `Buy` event
+- **type** - deal initiation method (`Order` or `Bid`)
 - **seller** - seller's address
 - **buyer** - buyer's address
 - **sellToken** - token to sell address
 - **buyToken** - token to buy address
-- **amount** - amount of tokens to buy
-- **price** - price of a token to buy
+- **sellAmount** - amount of `sellToken`
+- **buyAmount** - amount of `buyToken`
+- **price** - price in a `buyToken` currency
 - **fee** - fee in a `buyToken` currency
 - **txHash** - transaction hash
 - **blockNumber** - block number of the event
 - **blockTime** - block time the event was processed
+- **contract** - contract
+
+**ContractType** - enumeration for contracts
+- **TokenSale**
+- **ERC721SaleV1**
+- **ERC721SaleV2**
+- **ERC1155SaleV1**
+- **ERC1155SaleV2**
+- **ExchangeV1**
 
 ## Queries
 
@@ -34,32 +52,36 @@ Please follow the official documentation - https://thegraph.com/docs/define-a-su
     buyer
     sellToken
     buyToken
-    amount
+    sellAmount
+    buyAmount
     price
     fee
     txHash
     blockNumber
     blockTime
+    contract
   }
 }
 ```
 > The number of entities are specified with `first` flag.
 
-**Deal by transaction hash**
+**Deals by contract**
 ```GraphQL
 {
-  deals(where: {txHash: "0xb16af8089c8b5cf697a67cf2be5308f3987256713168bd57400892740d99b361"}) {
+  deals(where: { contract: ExchangeV1 }) {
     seller
     buyer
     sellToken
     buyToken
-    amount
+    sellAmount
+    buyAmount
     price
     fee
     txHash
     blockNumber
     blockTime
+    contract
   }
 }
 ```
-
+> see `ContractType` enumeration for possible `contract` values

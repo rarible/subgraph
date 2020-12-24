@@ -1,6 +1,5 @@
 {
-  "name": "Rarible",
-  "license": "UNLICENSED",
+  "name": "protocol",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",

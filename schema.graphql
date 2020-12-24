@@ -1,10 +1,12 @@
 type Deal @entity {
   id: ID!
+  type: DealType!
   seller: Bytes!
   buyer: Bytes!
   sellToken: Bytes!
   buyToken: Bytes!
-  amount: BigInt!
+  sellAmount: BigInt!
+  buyAmount: BigInt!
   price: BigInt!
   fee: BigDecimal!
   txHash: Bytes!
@@ -15,5 +17,14 @@ type Deal @entity {
 
 enum ContractType {
   TokenSale
+  ERC721SaleV1
+  ERC721SaleV2
+  ERC1155SaleV1
+  ERC1155SaleV2
   ExchangeV1
+}
+
+enum DealType {
+  Order
+  Bid
 }
