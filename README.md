@@ -15,7 +15,7 @@ The graphql schema is still under heavy development and will likely have major c
 
 ### Installation/Development
 
-Please follow the official documentation - https://thegraph.com/docs/define-a-subgraph#install-the-graph-cli.
+Please follow the official [documentation](https://thegraph.com/docs/define-a-subgraph).
 
 ## Entities
 
@@ -44,7 +44,7 @@ Please follow the official documentation - https://thegraph.com/docs/define-a-su
 
 ## Queries
 
-HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible/protocol
+HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible/protocol.
 
 **List of deals**
 ```GraphQL
@@ -65,9 +65,9 @@ HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible
   }
 }
 ```
-> The number of entities are specified with `first` flag.
+> The number of entities can be limited with `first` flag
 
-**List of deals by contract**
+**List of deals specified by a contract**
 ```GraphQL
 {
   deals(where: { contract: ExchangeV1 }) {

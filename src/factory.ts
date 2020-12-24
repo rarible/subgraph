@@ -8,6 +8,9 @@ export function initDeal(event: ethereum.Event, contract: string): Deal {
     if (deal == null) {
         deal = new Deal(dealId)
         deal.type = DealType.ORDER
+        deal.txHash = event.transaction.hash
+        deal.blockNumber = event.block.number
+        deal.blockTime = event.block.timestamp
         deal.contract = contract
     }
 

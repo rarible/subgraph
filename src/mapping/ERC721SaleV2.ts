@@ -1,7 +1,7 @@
 import { Buy } from "../../generated/ERC721SaleV2/ERC721SaleV2"
 import { Address, BigInt } from "@graphprotocol/graph-ts/index"
 import { initDeal } from '../factory'
-import { calculatePriceAndFee, fillServiceFields } from '../utils'
+import { calculatePriceAndFee } from '../utils'
 import { ContractAddress, ContractName } from "../enum"
 
 export function handleBuy(event: Buy): void {
@@ -13,6 +13,5 @@ export function handleBuy(event: Buy): void {
     deal.sellAmount = BigInt.fromI32(1)
     deal.buyAmount = event.params.price
     calculatePriceAndFee(deal)
-    fillServiceFields(deal, event)
     deal.save()
 }

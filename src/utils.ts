@@ -1,5 +1,5 @@
 import { Deal } from "../generated/schema"
-import { BigDecimal, BigInt, ethereum } from "@graphprotocol/graph-ts/index"
+import { BigDecimal, BigInt } from "@graphprotocol/graph-ts/index"
 import { DealType, Coefficient } from "./enum"
 
 export function calculatePriceAndFee(deal: Deal): void {
@@ -17,10 +17,4 @@ function calculatePrice(buyAmount: BigInt, sellAmount: BigInt, dealType: string)
 
 function calculateFee(sellAmount: BigInt, price: BigDecimal): BigDecimal {
     return sellAmount.toBigDecimal() * price * BigDecimal.fromString(Coefficient.FEE)
-}
-
-export function fillServiceFields(deal: Deal, event: ethereum.Event): void {
-    deal.txHash = event.transaction.hash
-    deal.blockNumber = event.block.number
-    deal.blockTime = event.block.timestamp
 }
