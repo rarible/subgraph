@@ -10,10 +10,10 @@ export namespace ContractAddress {
 
 export namespace ContractName {
     export const TOKEN_SALE = "TokenSale"
-    export const ERC_721_SALE_V1 = "ERC721Sale_V1"
-    export const ERC_721_SALE_V2 = "ERC721Sale_V2"
-    export const ERC_1155_SALE_V1 = "ERC1155Sale_V1"
-    export const ERC_1155_SALE_V2 = "ERC1155Sale_V2"
+    export const ERC_721_SALE_V1 = "ERC721SaleV1"
+    export const ERC_721_SALE_V2 = "ERC721SaleV2"
+    export const ERC_1155_SALE_V1 = "ERC1155SaleV1"
+    export const ERC_1155_SALE_V2 = "ERC1155SaleV2"
     export const EXCHANGE_V1 = "ExchangeV1"
 }
 

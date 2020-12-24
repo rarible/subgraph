@@ -1,6 +1,6 @@
 # Protocol subgraph
 
-The subgraph provides information on purchases at https://rarible.com, including commission amounts.
+The [subgraph](https://thegraph.com/explorer/subgraph/rarible/protocol) provides information on purchases at [Rarible](https://rarible.com), including commission amounts.
 
 Contracts support status in the current version:
 
@@ -44,6 +44,8 @@ Please follow the official documentation - https://thegraph.com/docs/define-a-su
 
 ## Queries
 
+HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible/protocol
+
 **List of deals**
 ```GraphQL
 {
@@ -65,7 +67,7 @@ Please follow the official documentation - https://thegraph.com/docs/define-a-su
 ```
 > The number of entities are specified with `first` flag.
 
-**Deals by contract**
+**List of deals by contract**
 ```GraphQL
 {
   deals(where: { contract: ExchangeV1 }) {
