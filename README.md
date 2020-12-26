@@ -33,7 +33,7 @@ Please follow the official [documentation](https://thegraph.com/docs/define-a-su
 - **block** - `Block`
 - **contract** - `ContractType`
 
-**Block** - represents ethereum block of the event
+**Block** - represents the ethereum block
 - **blockNumber** - number of the block
 - **blockTime** - timestamp of the block
 
