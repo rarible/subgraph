@@ -12,6 +12,71 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
+export class Block extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Block entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Block entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Block", id.toString(), this);
+  }
+
+  static load(id: string): Block | null {
+    return store.get("Block", id) as Block | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get blockNumber(): BigInt | null {
+    let value = this.get("blockNumber");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set blockNumber(value: BigInt | null) {
+    if (value === null) {
+      this.unset("blockNumber");
+    } else {
+      this.set("blockNumber", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get blockTime(): BigInt | null {
+    let value = this.get("blockTime");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set blockTime(value: BigInt | null) {
+    if (value === null) {
+      this.unset("blockTime");
+    } else {
+      this.set("blockTime", Value.fromBigInt(value as BigInt));
+    }
+  }
+}
+
 export class Deal extends Entity {
   constructor(id: string) {
     super();
@@ -132,22 +197,80 @@ export class Deal extends Entity {
     this.set("txHash", Value.fromBytes(value));
   }
 
-  get blockNumber(): BigInt {
-    let value = this.get("blockNumber");
+  get block(): string {
+    let value = this.get("block");
+    return value.toString();
+  }
+
+  set block(value: string) {
+    this.set("block", Value.fromString(value));
+  }
+
+  get contract(): string {
+    let value = this.get("contract");
+    return value.toString();
+  }
+
+  set contract(value: string) {
+    this.set("contract", Value.fromString(value));
+  }
+}
+
+export class Counter extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Counter entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Counter entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Counter", id.toString(), this);
+  }
+
+  static load(id: string): Counter | null {
+    return store.get("Counter", id) as Counter | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
     return value.toBigInt();
   }
 
-  set blockNumber(value: BigInt) {
-    this.set("blockNumber", Value.fromBigInt(value));
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
   }
 
-  get blockTime(): BigInt {
-    let value = this.get("blockTime");
-    return value.toBigInt();
+  get firstBlock(): string {
+    let value = this.get("firstBlock");
+    return value.toString();
   }
 
-  set blockTime(value: BigInt) {
-    this.set("blockTime", Value.fromBigInt(value));
+  set firstBlock(value: string) {
+    this.set("firstBlock", Value.fromString(value));
+  }
+
+  get lastBlock(): string {
+    let value = this.get("lastBlock");
+    return value.toString();
+  }
+
+  set lastBlock(value: string) {
+    this.set("lastBlock", Value.fromString(value));
   }
 
   get contract(): string {

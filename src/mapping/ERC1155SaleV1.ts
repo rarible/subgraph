@@ -11,7 +11,7 @@ export function handleBuy(event: Buy): void {
     deal.sellToken = event.params.token
     deal.buyToken = Address.fromString(ContractAddress.WETH9)
     deal.sellAmount = event.params.value
-    deal.buyAmount = deal.sellAmount * event.params.price
+    deal.buyAmount = event.params.value.times(event.params.price)
     calculatePriceAndFee(deal)
     deal.save()
 }

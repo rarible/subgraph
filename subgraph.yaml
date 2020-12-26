@@ -1,29 +1,9 @@
 specVersion: 0.0.2
-description: Protocol is a tracker of purchases on a rarible.com
+description: Protocol is a tracker of purchases on the rarible.com
 repository: https://github.com/rariblecom/subgraph
 schema:
   file: ./schema.graphql
 dataSources:
-  - kind: ethereum/contract
-    name: ExchangeV1
-    network: mainnet
-    source:
-      address: "0xcd4ec7b66fbc029c116ba9ffb3e59351c20b5b06"
-      abi: ExchangeV1
-      startBlock: 11274515
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - Deal
-      abis:
-        - name: ExchangeV1
-          file: ./abis/ExchangeV1.json
-      eventHandlers:
-        - event: Buy(indexed address,indexed uint256,uint256,address,address,uint256,uint256,address,uint256,uint256)
-          handler: handleBuy
-      file: ./src/mapping/ExchangeV1.ts
   - kind: ethereum/contract
     name: TokenSale
     network: mainnet
@@ -37,6 +17,8 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Deal
+        - Counter
+        - Block
       abis:
         - name: TokenSale
           file: ./abis/TokenSale.json
@@ -45,25 +27,27 @@ dataSources:
           handler: handleBuy
       file: ./src/mapping/TokenSale.ts
   - kind: ethereum/contract
-    name: ERC1155SaleV1
+    name: ERC721SaleV1
     network: mainnet
     source:
-      address: "0x8c530a698b6e83d562db09079bc458d4dad4e6c5"
-      abi: ERC1155SaleV1
-      startBlock: 10147909
+      address: "0xa5af48b105ddf2fa73cbaac61d420ea31b3c2a07"
+      abi: ERC721SaleV1
+      startBlock: 10147841
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
         - Deal
+        - Counter
+        - Block
       abis:
-        - name: ERC1155SaleV1
-          file: ./abis/ERC1155SaleV1.json
+        - name: ERC721SaleV1
+          file: ./abis/ERC721SaleV1.json
       eventHandlers:
-        - event: Buy(indexed address,indexed uint256,address,uint256,address,uint256)
+        - event: Buy(indexed address,indexed uint256,address,address,uint256,uint256)
           handler: handleBuy
-      file: ./src/mapping/ERC1155SaleV1.ts
+      file: ./src/mapping/ERC721SaleV1.ts
   - kind: ethereum/contract
     name: ERC721SaleV2
     network: mainnet
@@ -77,6 +61,8 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Deal
+        - Counter
+        - Block
       abis:
         - name: ERC721SaleV2
           file: ./abis/ERC721SaleV2.json
@@ -84,3 +70,69 @@ dataSources:
         - event: Buy(indexed address,indexed uint256,address,address,uint256,uint256)
           handler: handleBuy
       file: ./src/mapping/ERC721SaleV2.ts
+  - kind: ethereum/contract
+    name: ERC1155SaleV1
+    network: mainnet
+    source:
+      address: "0x8c530a698b6e83d562db09079bc458d4dad4e6c5"
+      abi: ERC1155SaleV1
+      startBlock: 10147909
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Deal
+        - Counter
+        - Block
+      abis:
+        - name: ERC1155SaleV1
+          file: ./abis/ERC1155SaleV1.json
+      eventHandlers:
+        - event: Buy(indexed address,indexed uint256,address,uint256,address,uint256)
+          handler: handleBuy
+      file: ./src/mapping/ERC1155SaleV1.ts
+  - kind: ethereum/contract
+    name: ERC1155SaleV2
+    network: mainnet
+    source:
+      address: "0x93f2a75d771628856f37f256da95e99ea28aafbe"
+      abi: ERC1155SaleV2
+      startBlock: 10786886
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Deal
+        - Counter
+        - Block
+      abis:
+        - name: ERC1155SaleV2
+          file: ./abis/ERC1155SaleV2.json
+      eventHandlers:
+        - event: Buy(indexed address,indexed uint256,address,uint256,address,uint256)
+          handler: handleBuy
+      file: ./src/mapping/ERC1155SaleV2.ts
+  - kind: ethereum/contract
+    name: ExchangeV1
+    network: mainnet
+    source:
+      address: "0xcd4ec7b66fbc029c116ba9ffb3e59351c20b5b06"
+      abi: ExchangeV1
+      startBlock: 11274515
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Deal
+        - Counter
+        - Block
+      abis:
+        - name: ExchangeV1
+          file: ./abis/ExchangeV1.json
+      eventHandlers:
+        - event: Buy(indexed address,indexed uint256,uint256,address,address,uint256,uint256,address,uint256,uint256)
+          handler: handleBuy
+      file: ./src/mapping/ExchangeV1.ts

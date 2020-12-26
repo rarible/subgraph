@@ -6,10 +6,6 @@ import { ContractAddress, ContractName, DealType } from "../enum"
 import { Address } from "@graphprotocol/graph-ts/index"
 
 export function handleBuy(event: Buy): void {
-    let amount = event.params.amount
-    if (!amount){
-        return
-    }
     let deal = initDeal(event, ContractName.EXCHANGE_V1)
     if (event.params.buyTokenId != BigInt.fromI32(0) && event.params.sellTokenId == BigInt.fromI32(0)){
         deal.type = DealType.BID
@@ -20,13 +16,21 @@ export function handleBuy(event: Buy): void {
         deal.sellToken = event.params.sellToken
         deal.buyToken = event.params.buyToken
         deal.sellAmount = event.params.amount
-        deal.buyAmount = event.params.amount / event.params.sellValue * event.params.buyValue
+        if (event.params.amount == BigInt.fromI32(0)){
+            deal.buyAmount = event.params.amount
+        } else {
+            deal.buyAmount = event.params.buyValue.times(event.params.amount).div(event.params.sellValue)
+        }
     } else if (deal.type == DealType.BID) {
         deal.seller = event.params.buyer
         deal.buyer = event.params.owner
         deal.sellToken = event.params.buyToken
         deal.buyToken = event.params.sellToken
-        deal.sellAmount = event.params.amount / event.params.sellValue * event.params.buyValue
+        if (event.params.amount == BigInt.fromI32(0)){
+            deal.sellAmount = event.params.amount
+        } else {
+            deal.sellAmount = event.params.buyValue.times(event.params.amount).div(event.params.sellValue)
+        }
         deal.buyAmount = event.params.amount
     }
 

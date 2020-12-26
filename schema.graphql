@@ -1,3 +1,23 @@
+enum DealType {
+  Order
+  Bid
+}
+
+enum ContractType {
+  TokenSale
+  ERC721SaleV1
+  ERC721SaleV2
+  ERC1155SaleV1
+  ERC1155SaleV2
+  ExchangeV1
+}
+
+type Block @entity {
+  id: ID!
+  blockNumber: BigInt
+  blockTime: BigInt
+}
+
 type Deal @entity {
   id: ID!
   type: DealType!
@@ -10,21 +30,14 @@ type Deal @entity {
   price: BigInt!
   fee: BigDecimal!
   txHash: Bytes!
-  blockNumber: BigInt!
-  blockTime: BigInt!
+  block: Block!
   contract: ContractType!
 }
 
-enum ContractType {
-  TokenSale
-  ERC721SaleV1
-  ERC721SaleV2
-  ERC1155SaleV1
-  ERC1155SaleV2
-  ExchangeV1
-}
-
-enum DealType {
-  Order
-  Bid
+type Counter @entity {
+  id: ID!
+  count: BigInt!
+  firstBlock: Block!
+  lastBlock: Block!
+  contract: ContractType!
 }
