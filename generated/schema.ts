@@ -42,8 +42,8 @@ export class Block extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get blockNumber(): BigInt | null {
-    let value = this.get("blockNumber");
+  get number(): BigInt | null {
+    let value = this.get("number");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -51,16 +51,16 @@ export class Block extends Entity {
     }
   }
 
-  set blockNumber(value: BigInt | null) {
+  set number(value: BigInt | null) {
     if (value === null) {
-      this.unset("blockNumber");
+      this.unset("number");
     } else {
-      this.set("blockNumber", Value.fromBigInt(value as BigInt));
+      this.set("number", Value.fromBigInt(value as BigInt));
     }
   }
 
-  get blockTime(): BigInt | null {
-    let value = this.get("blockTime");
+  get time(): BigInt | null {
+    let value = this.get("time");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -68,11 +68,11 @@ export class Block extends Entity {
     }
   }
 
-  set blockTime(value: BigInt | null) {
+  set time(value: BigInt | null) {
     if (value === null) {
-      this.unset("blockTime");
+      this.unset("time");
     } else {
-      this.set("blockTime", Value.fromBigInt(value as BigInt));
+      this.set("time", Value.fromBigInt(value as BigInt));
     }
   }
 }
@@ -132,6 +132,15 @@ export class Deal extends Entity {
 
   set buyer(value: Bytes) {
     this.set("buyer", Value.fromBytes(value));
+  }
+
+  get sellTokenId(): BigInt {
+    let value = this.get("sellTokenId");
+    return value.toBigInt();
+  }
+
+  set sellTokenId(value: BigInt) {
+    this.set("sellTokenId", Value.fromBigInt(value));
   }
 
   get sellToken(): Bytes {
@@ -197,13 +206,22 @@ export class Deal extends Entity {
     this.set("txHash", Value.fromBytes(value));
   }
 
-  get block(): string {
-    let value = this.get("block");
-    return value.toString();
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value.toBigInt();
   }
 
-  set block(value: string) {
-    this.set("block", Value.fromString(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+
+  get blockTime(): BigInt {
+    let value = this.get("blockTime");
+    return value.toBigInt();
+  }
+
+  set blockTime(value: BigInt) {
+    this.set("blockTime", Value.fromBigInt(value));
   }
 
   get contract(): string {

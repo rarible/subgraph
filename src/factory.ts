@@ -3,34 +3,34 @@ import { BigInt } from "@graphprotocol/graph-ts"
 import { ethereum } from "@graphprotocol/graph-ts/index"
 import { DealType } from "./enum"
 
-function initBlock(eventBlock: ethereum.Block): string {
+function initBlock(eventBlock: ethereum.Block): Block {
     let id = eventBlock.number.toHexString()
     let block = Block.load(id)
     if (block == null){
         block = new Block(id)
-        block.blockNumber = eventBlock.number
-        block.blockTime = eventBlock.timestamp
+        block.number = eventBlock.number
+        block.time = eventBlock.timestamp
         block.save()
     }
 
-    return id
+    return block as Block
 }
 
-function initCounter(contract: string, blockId: string): void {
+function initCounter(contract: string, block: Block): void {
     let counter = Counter.load(contract)
     if (counter == null) {
         counter = new Counter(contract)
         counter.count = BigInt.fromI32(0)
         counter.contract = contract
-        counter.firstBlock = blockId
+        counter.firstBlock = block.id
     }
-    counter.lastBlock = blockId
+    counter.lastBlock = block.id
     counter.count = counter.count.plus(BigInt.fromI32(1))
     counter.save()
 }
 
 export function initDeal(event: ethereum.Event, contract: string): Deal {
-    let blockId = initBlock(event.block)
+    let block = initBlock(event.block)
 
     let id = (event.transaction.hash.toHex() + "-" + event.logIndex.toString() + "-" + contract)
     let deal = Deal.load(id)
@@ -38,11 +38,11 @@ export function initDeal(event: ethereum.Event, contract: string): Deal {
         deal = new Deal(id)
         deal.type = DealType.ORDER
         deal.txHash = event.transaction.hash
-        deal.block = blockId
+        deal.blockNumber = block.number as BigInt
+        deal.blockTime = block.time as BigInt
         deal.contract = contract
     }
-
-    initCounter(contract, blockId)
+    initCounter(contract, block)
 
     return deal as Deal
 }

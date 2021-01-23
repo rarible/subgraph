@@ -23,6 +23,7 @@ Please follow the official [documentation](https://thegraph.com/docs/define-a-su
 - **type** - deal initiation method (`Order` or `Bid`)
 - **seller** - seller's address
 - **buyer** - buyer's address
+- **sellTokenId** - token to sell id
 - **sellToken** - token to sell address
 - **buyToken** - token to buy address
 - **sellAmount** - amount of `sellToken`
@@ -30,7 +31,8 @@ Please follow the official [documentation](https://thegraph.com/docs/define-a-su
 - **price** - price in a `buyToken` currency
 - **fee** - fee in a `buyToken` currency
 - **txHash** - transaction hash
-- **block** - `Block`
+- **blockNumber** - number of the block
+- **blockTime** - timestamp of the block
 - **contract** - `ContractType`
 
 **Block** - represents the ethereum block
@@ -67,6 +69,7 @@ HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible
     deals (first: 10) {
         seller
         buyer
+        sellTokenId
         sellToken
         buyToken
         sellAmount
@@ -74,10 +77,8 @@ HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible
         price
         fee
         txHash
-        block {
-            blockNumber
-            blockTime
-        }
+        blockNumber
+        blockTime
         contract
     }
 }
@@ -90,6 +91,7 @@ HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible
     deals (where: { contract: ExchangeV1 }) {
         seller
         buyer
+        sellTokenId
         sellToken
         buyToken
         sellAmount
@@ -97,10 +99,8 @@ HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible
         price
         fee
         txHash
-        block {
-            blockNumber
-            blockTime
-        }
+        blockNumber
+        blockTime
         contract
     }
 }

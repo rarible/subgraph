@@ -13,6 +13,7 @@ export function handleBuy(event: Buy): void {
     if (deal.type == DealType.ORDER) {
         deal.seller = event.params.owner
         deal.buyer = event.params.buyer
+        deal.sellTokenId = event.params.sellTokenId
         deal.sellToken = event.params.sellToken
         deal.buyToken = event.params.buyToken
         deal.sellAmount = event.params.amount
@@ -24,6 +25,7 @@ export function handleBuy(event: Buy): void {
     } else if (deal.type == DealType.BID) {
         deal.seller = event.params.buyer
         deal.buyer = event.params.owner
+        deal.sellTokenId = event.params.buyTokenId
         deal.sellToken = event.params.buyToken
         deal.buyToken = event.params.sellToken
         if (event.params.amount == BigInt.fromI32(0)){

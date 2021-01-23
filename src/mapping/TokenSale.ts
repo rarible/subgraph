@@ -8,6 +8,7 @@ export function handleBuy(event: Buy): void {
     let deal = initDeal(event, ContractName.TOKEN_SALE)
     deal.seller = event.params.seller
     deal.buyer = event.params.buyer
+    deal.sellTokenId = event.params.tokenId
     deal.sellToken = event.params.token
     deal.buyToken = Address.fromString(ContractAddress.WETH9)
     deal.sellAmount = BigInt.fromI32(1)

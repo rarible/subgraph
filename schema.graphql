@@ -14,8 +14,8 @@ enum ContractType {
 
 type Block @entity {
   id: ID!
-  blockNumber: BigInt
-  blockTime: BigInt
+  number: BigInt
+  time: BigInt
 }
 
 type Deal @entity {
@@ -23,6 +23,7 @@ type Deal @entity {
   type: DealType!
   seller: Bytes!
   buyer: Bytes!
+  sellTokenId: BigInt!
   sellToken: Bytes!
   buyToken: Bytes!
   sellAmount: BigInt!
@@ -30,7 +31,8 @@ type Deal @entity {
   price: BigInt!
   fee: BigDecimal!
   txHash: Bytes!
-  block: Block!
+  blockNumber: BigInt!
+  blockTime: BigInt!
   contract: ContractType!
 }
 
