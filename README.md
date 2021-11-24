@@ -13,7 +13,7 @@ Contracts support status in the current version:
 
 The graphql schema is still under heavy development and will likely have major changes and improvements.
 
-### Installation/Development
+## Installation/Development
 
 Please follow the official [documentation](https://thegraph.com/docs/define-a-subgraph).
 
@@ -124,3 +124,11 @@ HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible
     }
 }
 ```
+
+## Suggestions
+
+You are welcome to [suggest features](https://github.com/rarible/protocol/discussions) and [report bugs found](https://github.com/rarible/protocol/issues)!
+
+## License
+
+Protocol subgraph is available under [MIT License](LICENSE.md).
